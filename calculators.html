@@ -1,0 +1,134 @@
+
+<!-- saved from url=(0051)file:///C:/Users/SYKES/Desktop/pandora's%20box.html -->
+<html contenteditable="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <style media="screen">
+
+    form {
+      /* display: flex; */
+
+    }
+
+    .tc-elem{
+      width:4rem;
+      font-size:1.1rem;
+
+    }
+    .tc-elem:hover {
+      border-color: #ffb3b3;
+      border-style: ridge;
+    }
+
+    .tc-elem:focus{
+      background-color: #ffe6ff;
+    }
+
+    .clc{
+      height:2em;
+    }
+
+    .clc:hover{
+      border-color: #ffb3b3;
+      border-style: ridge;
+    }
+
+    .clc:focus{
+      background-color: #ffe6e6;
+    }
+
+    button {
+      background-color: DeepSkyBlue;
+      color: white;
+      border-radius: 23%;
+      border-width: 0;
+      height:1.5rem
+
+    }
+
+    button:hover{
+      background-color: #0090ff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <form id='calculator'>
+    <input type='text' id='prompt' class='clc' placeholder="    Arithmetic Calculator"></input>
+    <button id='calculate'>➡</button>
+    <label id='output'></label>
+  </form>
+
+  </br>
+
+  <form id='time-calculator'>
+    <input type='text' id='first' class='tc-elem' placeholder="HHMM"></input>
+    <input type='text' id='second' class='tc-elem'placeholder="HHMM"></input>
+    <button id='calc'>⏳⌚</button>
+    <label id='result'></label>
+    </br>
+    <label id='whole'></label>
+  </form>
+
+
+  <script>
+
+  // arithmetic calculator
+    document.getElementById('calculate').addEventListener('click', (e)=>{
+      e.preventDefault()
+      try {document.getElementById('output').textContent = `${eval(document.getElementById('prompt').value)}`
+      } catch(err) {document.getElementById('output').textContent ='Try only numbers! —i.e.:  2+2  or  (53+2)/5'}
+    })
+
+  // calculating time difference between two 24hr-formatted schedules
+    const first= document.getElementById('first')
+    const second=document.getElementById('second')
+    const calc = document.getElementById('calc')
+    const result = document.getElementById('result')
+    const whole = document.getElementById('whole')
+
+  calc.addEventListener('click', (e)=>{
+
+    e.preventDefault()
+
+    try{
+
+      let firstHour = ""
+      let firstMin = ""
+      let secondHour = ""
+      let secondMin = ""
+
+      for (item in first.value) {
+        if (item < 2 ) {firstHour += first.value[item] }
+        else if (item >=2) {firstMin += first.value[item]} }
+
+      for (item in second.value) {
+        if (item < 2 ) {secondHour += second.value[item] }
+        else if (item >=2) {secondMin += second.value[item]} }
+
+      firstHour = parseInt(firstHour)
+      firstMin = parseInt(firstMin)
+      secondHour = parseInt(secondHour)
+      secondMin = parseInt(secondMin)
+
+      if (isNaN(parseInt(firstHour)) || isNaN(parseInt(firstMin)) || isNaN(parseInt(secondMin)) || isNaN(parseInt(secondMin))) throw ('not a nbr either!')
+
+      const answ = eval(((secondHour*60*60*1000+secondMin*60*1000)-(firstHour*60*60*1000+firstMin*60*1000))/(60*1000))
+
+      result.textContent = `${answ} min`
+
+      const hou = answ/60
+      const intpart = parseInt(hou) // integer part of hours
+      const decimals = Math.ceil(parseFloat(`0.${hou.toString().split('.')[1]}`)*60) //Multiply float part x60 to get mins.
+
+      whole.textContent =`${intpart} hr + ${decimals} mins`
+
+    } catch(err) { whole.textContent = `insert only 24hr format schedules. i.e.: 1445 & 1830` }
+
+  })
+
+  </script>
+</body>
+</html>
