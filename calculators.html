@@ -1,6 +1,6 @@
 
 <!-- saved from url=(0051)file:///C:/Users/SYKES/Desktop/pandora's%20box.html -->
-<html contenteditable="">
+<html contenteditable="" >
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
@@ -51,19 +51,41 @@
       background-color: #0090ff;
     }
 
+
+    @media screen and (max-device-width:800px){
+    .tc-elem {width:100%; height:11%; font-size:1.5em;}
+    .clc {width:100%; height:11%; font-size:1.5em;}
+    button {width:100%; border-radius:0; height:10%; font-size:1.5em;}
+    body {background-color: antiqueWhite;}
+   
+    #calculator {font-size:3.5em;}
+    #time-calculator {font-size:3.5em}
+    }
+
+
+    @media screen and (max-width:500px){
+    .tc-elem {width:100%; height:11%; font-size:1em;}
+    .clc {width:100%; height:11%; font-size:1em;}
+    button {width:100%; border-radius:0; height:10%; font-size:0.5em;}
+    body {background-color: antiqueWhite;}
+   
+    #calculator {font-size:1.6em;}
+    #time-calculator {font-size:1.6em}
+    }
+
   </style>
 </head>
 <body>
 
-  <form id='calculator'>
-    <input type='text' id='prompt' class='clc' placeholder="    Arithmetic Calculator"></input>
+  <form id='calculator' contenteditable="false">
+    <input type='text' id='prompt' class='clc' placeholder="Arithmetic Calculator"></input>
     <button id='calculate'>➡</button>
     <label id='output'></label>
   </form>
 
   </br>
 
-  <form id='time-calculator'>
+  <form id='time-calculator' contenteditable="false">
     <input type='text' id='first' class='tc-elem' placeholder="HHMM"></input>
     <input type='text' id='second' class='tc-elem'placeholder="HHMM"></input>
     <button id='calc'>⏳⌚</button>
@@ -72,6 +94,14 @@
     <label id='whole'></label>
   </form>
 
+
+
+<div></br></div>
+<div></br>***you can take notes 📝 below this line</div>
+<div></br></div>
+<div></br></div>
+<div></br></div>
+<div></br></div>
 
   <script>
 
