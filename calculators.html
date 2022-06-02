@@ -1,21 +1,27 @@
-
-<!-- saved from url=(0051)file:///C:/Users/SYKES/Desktop/pandora's%20box.html -->
-<html contenteditable="" >
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-  <style media="screen">
+  <meta charset='utf-8'>
+  <meta name='author' content='Perlesvaux'>
+  <meta name='description' content='basic calculator & time calculator'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Basic Calculator & Time Calculator</title>
+  <style>
 
-    form {
+    *{box-sizing: border-box;}
+
+    body {
       /* display: flex; */
-
+      padding: 0.5em;
+      background-color: antiqueWhite;
+      font-family: Consolas;
+    }
+    .tc-elem {
+      width:100%;
+      height:11%;
+      font-size:1em;
     }
 
-    .tc-elem{
-      width:4rem;
-      font-size:1.1rem;
-
-    }
     .tc-elem:hover {
       border-color: #ffb3b3;
       border-style: ridge;
@@ -25,8 +31,10 @@
       background-color: #ffe6ff;
     }
 
-    .clc{
-      height:2em;
+    .clc {
+      width:100%;
+      height:11%;
+      font-size:1em;
     }
 
     .clc:hover{
@@ -38,127 +46,220 @@
       background-color: #ffe6e6;
     }
 
+    /* The clear & save buttons have their own width (49.2%), not the 100% you see here!!! */
     button {
       background-color: DeepSkyBlue;
       color: white;
-      border-radius: 23%;
+      width:100%;
+      height:10%;
+      font: 0.9em Consolas;
+      border-radius: 6px;
       border-width: 0;
-      height:1.5rem
-
+      margin: 5px 0 10px;
     }
 
     button:hover{
       background-color: #0090ff;
     }
 
+    input {
+      border: 1px solid black;
+      padding: 1px 10px;
+      border-radius: 6px;
+      margin: 5px 0;
+    }
 
-    @media screen and (max-device-width:800px){
+    /* @media screen and (max-device-width:800px){
     .tc-elem {width:100%; height:11%; font-size:1.5em;}
     .clc {width:100%; height:11%; font-size:1.5em;}
     button {width:100%; border-radius:0; height:10%; font-size:1.5em;}
     body {background-color: antiqueWhite;}
-   
+
     #calculator {font-size:3.5em;}
     #time-calculator {font-size:3.5em}
-    }
+    } */
 
-
-    @media screen and (max-width:500px){
-    .tc-elem {width:100%; height:11%; font-size:1em;}
-    .clc {width:100%; height:11%; font-size:1em;}
-    button {width:100%; border-radius:0; height:10%; font-size:0.5em;}
-    body {background-color: antiqueWhite;}
-   
     #calculator {font-size:1.6em;}
     #time-calculator {font-size:1.6em}
+
+    /* @media screen and (max-width:500px){
+    } */
+
+    h2, p {
+      font: bold 1.5em;
+      margin: 10px 0;
+    }
+    #notepad {
+      margin: 10px 0;
+      padding: 3px 10px;
+      border: 2px solid #0090ff;
+      border-radius: 6px;
+      background-color: #ffff99;
+      font-size: 1.2em;
+    }
+    #textbox:focus {
+      outline: none;
+    }
+    #clearBtn, #saveBtn {
+      width: 35%;
+      font-size: 1.3em;
+    }
+    #saveBtn {
+      width: 60%;
+      font-size: 1.3em;
+      line-height: 1.5em;
+      /* margin: auto; */
+    }
+    #calculate {
+      font-size: 1.2em;
+    }
+
+    #notepadBtns {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      height: 600px;
     }
 
   </style>
 </head>
 <body>
-
-  <form id='calculator' contenteditable="false">
-    <input type='text' id='prompt' class='clc' placeholder="Arithmetic Calculator"></input>
-    <button id='calculate'>➡</button>
-    <label id='output'></label>
+  <h2>Basic Calculator</h2>
+  <p>Use '**' to exponentiate, '4**2' will give you '16'.</p>
+  <p>Don't use ',' for decimals, use '.' instead: 8.5✅ 8,5❌</p>
+  <form id='calculator'>
+    <input type='text' id='prompt' class='clc' placeholder="(4 + 5 * 3) ** 2" autofocus></input>
+    <button id='calculate'>=</button>
+    <span id='output'></span>
   </form>
-
-  </br>
-
-  <form id='time-calculator' contenteditable="false">
+  <hr>
+  <h2>Time difference Calculator</h2>
+  <p>Enter 2 times and get their difference:</p>
+  <form id='time-calculator'>
     <input type='text' id='first' class='tc-elem' placeholder="HHMM"></input>
+    <br>
     <input type='text' id='second' class='tc-elem'placeholder="HHMM"></input>
-    <button id='calc'>⏳⌚</button>
+    <br>
+    <button id='calc' type='button'>⏳Get Time Difference⌚</button>
     <label id='result'></label>
     </br>
     <label id='whole'></label>
   </form>
-
-
-
-<div></br></div>
-<div></br>***you can take notes 📝 below this line</div>
-<div></br></div>
-<div></br></div>
-<div></br></div>
-<div></br></div>
-
+  <hr>
+  <h2>Notepad</h2>
+  <p>Below, you can take notes 📝, if you want:</p>
+  <div id='notepad'>
+    <div id='textbox' contenteditable='true'>
+    </div>
+  </div>
+  <div id='notepadBtns'>
+    <button id='clearBtn' type="button">Clear 🧹</button>
+    <button id='saveBtn' type="button">Save ✅</button>
+  </div>
   <script>
 
-  // arithmetic calculator
-    document.getElementById('calculate').addEventListener('click', (e)=>{
-      e.preventDefault()
-      try {document.getElementById('output').textContent = `${eval(document.getElementById('prompt').value)}`
-      } catch(err) {document.getElementById('output').textContent ='Try only numbers! —i.e.:  2+2  or  (53+2)/5'}
-    })
+// arithmetic calculator
+document.getElementById('calculate').addEventListener('click', (e)=>{
+  e.preventDefault()
+  try {
+    document.getElementById('output').textContent = `${eval(document.getElementById('prompt').value)}`
+  } catch(err) {
+    document.getElementById('output').textContent ='Try only numbers! i.e.:  2+2  or  (53+2)/5'}
+})
 
-  // calculating time difference between two 24hr-formatted schedules
-    const first= document.getElementById('first')
-    const second=document.getElementById('second')
-    const calc = document.getElementById('calc')
-    const result = document.getElementById('result')
-    const whole = document.getElementById('whole')
+// calculating time difference between two 24hr-formatted schedules
+const first= document.getElementById('first')
+const second=document.getElementById('second')
+const calc = document.getElementById('calc')
+const result = document.getElementById('result')
+const whole = document.getElementById('whole')
 
-  calc.addEventListener('click', (e)=>{
+const notepad = document.getElementById('notepad')
+const saveBtn = document.getElementById('saveBtn')
+const textbox = document.getElementById('textbox')
 
-    e.preventDefault()
+// Loads saved notes, if any; and if any is retrieved, the save button
+// indicates that the just loaded notes are already saved:
 
-    try{
+textbox.innerText = localStorage.getItem('savedNotes')
 
-      let firstHour = ""
-      let firstMin = ""
-      let secondHour = ""
-      let secondMin = ""
+if (textbox.innerText !== '') saveBtn.innerText = 'Saved! ☑'
 
-      for (item in first.value) {
-        if (item < 2 ) {firstHour += first.value[item] }
-        else if (item >=2) {firstMin += first.value[item]} }
 
-      for (item in second.value) {
-        if (item < 2 ) {secondHour += second.value[item] }
-        else if (item >=2) {secondMin += second.value[item]} }
+// FUNCTIONS:
 
-      firstHour = parseInt(firstHour)
-      firstMin = parseInt(firstMin)
-      secondHour = parseInt(secondHour)
-      secondMin = parseInt(secondMin)
+// Calculates the time difference:
 
-      if (isNaN(parseInt(firstHour)) || isNaN(parseInt(firstMin)) || isNaN(parseInt(secondMin)) || isNaN(parseInt(secondMin))) throw ('not a nbr either!')
+function timeDif() {
 
-      const answ = eval(((secondHour*60*60*1000+secondMin*60*1000)-(firstHour*60*60*1000+firstMin*60*1000))/(60*1000))
+  try{
+    let firstHour = ""
+    let firstMin = ""
+    let secondHour = ""
+    let secondMin = ""
 
-      result.textContent = `${answ} min`
+    for (item in first.value) {
+      if (item < 2 ) {firstHour += first.value[item] }
+      else if (item >=2) {firstMin += first.value[item]} }
 
-      const hou = answ/60
-      const intpart = parseInt(hou) // integer part of hours
-      const decimals = Math.ceil(parseFloat(`0.${hou.toString().split('.')[1]}`)*60) //Multiply float part x60 to get mins.
+    for (item in second.value) {
+      if (item < 2 ) {secondHour += second.value[item] }
+      else if (item >=2) {secondMin += second.value[item]} }
 
-      whole.textContent =`${intpart} hr + ${decimals} mins`
+    firstHour = parseInt(firstHour)
+    firstMin = parseInt(firstMin)
+    secondHour = parseInt(secondHour)
+    secondMin = parseInt(secondMin)
 
-    } catch(err) { whole.textContent = `insert only 24hr format schedules. i.e.: 1445 & 1830` }
+    if (isNaN(parseInt(firstHour)) || isNaN(parseInt(firstMin)) || isNaN(parseInt(secondMin)) || isNaN(parseInt(secondMin))) throw ('not a nbr either!')
 
-  })
+    const answ = eval(Math.abs(((secondHour*60*60*1000+secondMin*60*1000)-(firstHour*60*60*1000+firstMin*60*1000))/(60*1000)))
 
+    result.textContent = `${answ} mins`
+
+    const hou = answ/60
+    const intpart = Math.abs(parseInt(hou)) // integer part of hours
+    const decimals = Math.ceil(parseFloat(`0.${hou.toString().split('.')[1]}`)*60) //Multiply float part x60 to get mins.
+
+    whole.textContent =`${intpart} hr + ${decimals} mins`
+
+  } catch(err) { whole.textContent = `insert only 24hr format schedules. i.e.: 1445 & 1830` }
+}
+
+// EVENT LISTENERS:
+
+calc.addEventListener('click', timeDif)
+first.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') second.focus()
+})
+
+second.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') timeDif()
+})
+
+saveBtn.addEventListener('click', () => {
+
+  let savedNotes = ''
+
+  for (const child of notepad.children) {
+    savedNotes += child.innerText
+  }
+
+  localStorage.setItem('savedNotes', savedNotes)
+  saveBtn.textContent = 'Saved! ☑'
+})
+
+clearBtn.addEventListener('click', () => {
+  localStorage.removeItem('savedNotes')
+  textbox.innerText = ''
+  saveBtn.textContent = 'Save ✅'
+
+})
+textbox.addEventListener('keydown', (e) => {
+  if (saveBtn.textContent === 'Saved! ☑') {
+    saveBtn.textContent = 'Save ✅'
+  }
+} )
   </script>
 </body>
 </html>
