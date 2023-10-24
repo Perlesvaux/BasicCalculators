@@ -1,4 +1,4 @@
-# x2 Calculators for the price of one!
+# x2 [Calculators](https://perlesvaux.github.io/BasicCalculators/) for the price of one!
 
 This project (calculators.html) consists of two **HTML forms**.
 
